@@ -150,7 +150,7 @@ export default function Home() {
               </svg>
             </a>
             <a
-              href="https://github.com/JHORJE18"
+              href="https://github.com/JHORJE18/PriceCalculator"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-foreground transition-colors"
