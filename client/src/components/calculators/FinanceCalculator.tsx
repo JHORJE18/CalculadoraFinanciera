@@ -76,6 +76,7 @@ export function FinanceCalculator() {
             id="interest"
             checked={hasInterest}
             onCheckedChange={setHasInterest}
+            className="data-[state=checked]:bg-[rgb(52,199,89)] data-[state=checked]:dark:bg-[rgb(48,209,88)]"
           />
           <Label htmlFor="interest">Incluir Intereses</Label>
         </div>
