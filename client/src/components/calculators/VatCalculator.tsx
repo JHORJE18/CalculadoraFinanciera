@@ -4,8 +4,12 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
+import { Button } from "@/components/ui/button";
+import { Share2 } from "lucide-react";
+import { useShare } from "@/hooks/useShare";
 
 export function VatCalculator() {
+  const { shareData } = useShare();
   const [amount, setAmount] = useState<string>(() => {
     return localStorage.getItem('vat-calculator-amount') || '';
   });
@@ -36,10 +40,22 @@ export function VatCalculator() {
     vat = total - baseAmount;
   }
 
+  const handleShare = () => {
+    const shareText = `💰 Cálculo de IVA\n\nBase Imponible: ${baseAmount.toFixed(2)}€\nIVA (${vatRateNumber}%): ${vat.toFixed(2)}€\nTotal: ${total.toFixed(2)}€\n\n📱 Calculado con Calculadora Financiera | ${window.location.href}`;
+    
+    shareData({
+      title: "Cálculo de IVA",
+      text: shareText
+    });
+  };
+
   return (
     <Card>
-      <CardHeader>
+      <CardHeader className="flex flex-row items-center justify-between">
         <CardTitle>Calculadora de IVA</CardTitle>
+        <Button variant="outline" size="icon" onClick={handleShare}>
+          <Share2 className="h-4 w-4" />
+        </Button>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="space-y-2">
@@ -61,7 +77,6 @@ export function VatCalculator() {
               placeholder="Introduce el importe"
               className="flex-1"
             />
-
           </div>
         </div>
 
@@ -77,17 +92,17 @@ export function VatCalculator() {
               />
             </div>
             <div className="flex-1">
-            <Label>Tipo de IVA</Label>
-            <Select value={vatRate} onValueChange={setVatRate}>
-              <SelectTrigger>
-                <SelectValue placeholder="Selecciona el tipo de IVA" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="21">21%</SelectItem>
-                <SelectItem value="10">10%</SelectItem>
-                <SelectItem value="4">4%</SelectItem>
-              </SelectContent>
-            </Select>
+              <Label>Tipo de IVA</Label>
+              <Select value={vatRate} onValueChange={setVatRate}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Selecciona el tipo de IVA" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="21">21%</SelectItem>
+                  <SelectItem value="10">10%</SelectItem>
+                  <SelectItem value="4">4%</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
           </div>
         </div>

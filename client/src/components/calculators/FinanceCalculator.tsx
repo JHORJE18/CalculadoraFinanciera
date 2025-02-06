@@ -3,8 +3,12 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
+import { Button } from "@/components/ui/button";
+import { Share2 } from "lucide-react";
+import { useShare } from "@/hooks/useShare";
 
 export function FinanceCalculator() {
+  const { shareData } = useShare();
   const [amount, setAmount] = useState<string>(() => {
     return localStorage.getItem('finance-calculator-amount') || '';
   });
@@ -40,10 +44,22 @@ export function FinanceCalculator() {
     totalInterest = monthlyPayment * totalMonths - totalAmount;
   }
 
+  const handleShare = () => {
+    const shareText = `💰 Cálculo de Financiación\n\nImporte Total: ${totalAmount.toFixed(2)}€\nNúmero de Meses: ${totalMonths}\nCuota Mensual: ${monthlyPayment.toFixed(2)}€${hasInterest ? `\nTasa de Interés: ${annualRate}%\nIntereses Totales: ${totalInterest.toFixed(2)}€` : ''}\nTotal a Pagar: ${(totalAmount + totalInterest).toFixed(2)}€\n\n📱 Calculado con Calculadora Financiera | ${window.location.href}`;
+    
+    shareData({
+      title: "Cálculo de Financiación",
+      text: shareText
+    });
+  };
+
   return (
     <Card>
-      <CardHeader>
+      <CardHeader className="flex flex-row items-center justify-between">
         <CardTitle>Calculadora de Financiación</CardTitle>
+        <Button variant="outline" size="icon" onClick={handleShare}>
+          <Share2 className="h-4 w-4" />
+        </Button>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="space-y-2">

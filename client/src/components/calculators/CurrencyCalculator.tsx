@@ -57,11 +57,7 @@ export function CurrencyCalculator() {
       const exchangeRate = exchangeRates[toCurrency] / exchangeRates[fromCurrency];
       const convertedAmount = result;
 
-      const shareText = `💱 Conversión de Divisas
-${parseFloat(amount).toLocaleString()} ${fromCurrency} = ${convertedAmount.toLocaleString()} ${toCurrency}
-Tasa de cambio: 1 ${fromCurrency} = ${exchangeRate.toFixed(4)} ${toCurrency}
-📱 Calculado con Calculadora Financiera
-${window.location.href}`;
+      const shareText = `💰 Conversión de Divisas\n\n${parseFloat(amount).toLocaleString()} ${fromCurrency} = ${convertedAmount.toLocaleString()} ${toCurrency}\nTasa de cambio: 1 ${fromCurrency} = ${exchangeRate.toFixed(4)} ${toCurrency}\n\n📱 Calculado con Calculadora Financiera | ${window.location.href}`;
 
       if (navigator.share) {
         navigator.share({
@@ -90,8 +86,11 @@ ${window.location.href}`;
 
   return (
     <Card>
-      <CardHeader>
+      <CardHeader className="flex flex-row items-center justify-between">
         <CardTitle>Calculadora de Divisas</CardTitle>
+        <Button variant="outline" size="icon" onClick={handleShare}>
+          <Share2 className="h-4 w-4" />
+        </Button>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="space-y-2">
@@ -156,14 +155,6 @@ ${window.location.href}`;
                 {result.toLocaleString()} {toCurrency} {currencies.find(c => c.code === toCurrency)?.flag}
               </div>
             </div>
-            <Button
-              variant="outline"
-              className="w-full mt-4"
-              onClick={handleShare}
-            >
-              <Share2 className="mr-2 h-4 w-4" />
-              Compartir Resultado
-            </Button>
           </div>
         )}
         <div className="text-sm text-muted-foreground text-center mt-4 border-t pt-4">
