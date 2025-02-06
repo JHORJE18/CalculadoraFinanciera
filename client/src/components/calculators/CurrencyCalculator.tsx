@@ -58,12 +58,10 @@ export function CurrencyCalculator() {
       const convertedAmount = result;
 
       const shareText = `💱 Conversión de Divisas
-
 ${parseFloat(amount).toLocaleString()} ${fromCurrency} = ${convertedAmount.toLocaleString()} ${toCurrency}
-
 Tasa de cambio: 1 ${fromCurrency} = ${exchangeRate.toFixed(4)} ${toCurrency}
-
-📱 Calculado con Calculadora Financiera`;
+📱 Calculado con Calculadora Financiera
+${window.location.href}`;
 
       if (navigator.share) {
         navigator.share({
