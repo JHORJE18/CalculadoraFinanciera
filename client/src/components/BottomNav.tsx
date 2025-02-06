@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { Calculator, Percent, Package2, Wallet, Home } from "lucide-react";
+import { Calculator, Percent, Package2, Wallet, Home, ArrowDownUp } from "lucide-react";
 
 export function BottomNav() {
   const [location] = useLocation();
@@ -10,6 +10,7 @@ export function BottomNav() {
     { icon: Package2, label: "Ofertas", path: "/ofertas" },
     { icon: Percent, label: "Descuentos", path: "/descuentos" },
     { icon: Wallet, label: "Financiación", path: "/financiacion" },
+    { icon: ArrowDownUp, label: "Divisas", path: "/divisas" },
   ];
 
   return (
@@ -21,8 +22,8 @@ export function BottomNav() {
               className={`
                 flex flex-col items-center p-2
                 ${location === path
-                  ? "text-primary font-medium dark:text-primary-foreground"
-                  : "text-muted-foreground hover:text-primary dark:hover:text-primary-foreground"
+                  ? "text-primary font-medium dark:text-primary"
+                  : "text-muted-foreground hover:text-primary dark:hover:text-primary"
                 }
               `}
             >

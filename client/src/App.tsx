@@ -11,6 +11,7 @@ import IvaPage from "@/pages/calculadoras/Iva";
 import OfertasPage from "@/pages/calculadoras/Ofertas";
 import DescuentosPage from "@/pages/calculadoras/Descuentos";
 import FinanciacionPage from "@/pages/calculadoras/Financiacion";
+import DivisasPage from "./pages/calculadoras/Divisas";
 
 function Router() {
   return (
@@ -20,6 +21,7 @@ function Router() {
       <Route path="/ofertas" component={OfertasPage} />
       <Route path="/descuentos" component={DescuentosPage} />
       <Route path="/financiacion" component={FinanciacionPage} />
+      <Route path="/divisas" component={DivisasPage} />
       <Route component={NotFound} />
     </Switch>
   );
