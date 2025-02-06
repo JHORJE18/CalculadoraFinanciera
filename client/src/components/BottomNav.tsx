@@ -1,7 +1,9 @@
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { Calculator, Percent, Package2, Wallet, Home } from "lucide-react";
 
 export function BottomNav() {
+  const [location] = useLocation();
+
   const navItems = [
     { icon: Home, label: "Inicio", path: "/" },
     { icon: Calculator, label: "IVA", path: "/iva" },
@@ -15,7 +17,9 @@ export function BottomNav() {
       <div className="flex justify-around items-center h-16">
         {navItems.map(({ icon: Icon, label, path }) => (
           <Link key={path} href={path}>
-            <a className="flex flex-col items-center p-2 text-muted-foreground hover:text-primary">
+            <a className={`flex flex-col items-center p-2 ${
+              location === path ? "text-primary" : "text-muted-foreground hover:text-primary"
+            }`}>
               <Icon className="h-6 w-6" />
               <span className="text-xs mt-1">{label}</span>
             </a>
