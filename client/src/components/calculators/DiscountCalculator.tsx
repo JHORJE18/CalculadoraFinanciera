@@ -35,7 +35,13 @@ export function DiscountCalculator() {
             min="0"
             step="0.01"
             value={price}
-            onChange={(e) => setPrice(e.target.value)}
+            onChange={(e) => {
+              const value = e.target.value;
+              const normalizedValue = value.replace(/,/g, '.');
+              if (!isNaN(parseFloat(normalizedValue)) || normalizedValue === '') {
+                setPrice(normalizedValue);
+              }
+            }}
             placeholder="Introduce el precio"
           />
         </div>

@@ -54,7 +54,13 @@ export function FinanceCalculator() {
             min="0"
             step="0.01"
             value={amount}
-            onChange={(e) => setAmount(e.target.value)}
+            onChange={(e) => {
+              const value = e.target.value;
+              const normalizedValue = value.replace(/,/g, '.');
+              if (!isNaN(parseFloat(normalizedValue)) || normalizedValue === '') {
+                setAmount(normalizedValue);
+              }
+            }}
             placeholder="Introduce el importe"
           />
         </div>
@@ -71,17 +77,16 @@ export function FinanceCalculator() {
           />
         </div>
 
-        <div className="flex items-center space-x-2">
-          <Switch
-            id="interest"
-            checked={hasInterest}
-            onCheckedChange={setHasInterest}
-            className="data-[state=checked]:bg-[rgb(52,199,89)] data-[state=checked]:dark:bg-[rgb(48,209,88)]"
-          />
-          <Label htmlFor="interest">Incluir Intereses</Label>
-        </div>
-
-        {hasInterest && (
+        <div className="grid grid-cols-2 gap-4 items-center">
+        <div className="flex flex-col items-start justify-center h-full">
+            <Label htmlFor="interest" className="mb-2">Incluir Intereses</Label>
+            <Switch
+              id="interest"
+              checked={hasInterest}
+              onCheckedChange={setHasInterest}
+              className="data-[state=checked]:bg-[rgb(52,199,89)] data-[state=checked]:dark:bg-[rgb(48,209,88)]"
+            />
+          </div>
           <div className="space-y-2">
             <Label htmlFor="interest-rate">Tasa de Interés Anual (%)</Label>
             <Input
@@ -90,11 +95,18 @@ export function FinanceCalculator() {
               min="0"
               step="0.1"
               value={interestRate}
-              onChange={(e) => setInterestRate(e.target.value)}
+              onChange={(e) => {
+                const value = e.target.value;
+                const normalizedValue = value.replace(/,/g, '.');
+                if (!isNaN(parseFloat(normalizedValue)) || normalizedValue === '') {
+                  setInterestRate(normalizedValue);
+                }
+              }}
               placeholder="Introduce la tasa de interés"
+              disabled={!hasInterest}
             />
           </div>
-        )}
+        </div>
 
         <div className="pt-4 space-y-2">
           <div className="flex justify-between">
