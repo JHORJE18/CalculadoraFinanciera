@@ -4,6 +4,7 @@ import { queryClient } from "./lib/queryClient";
 import { Toaster } from "@/components/ui/toaster";
 import NotFound from "@/pages/not-found";
 import { ThemeProvider } from "./components/theme-provider";
+import Home from "@/pages/Home";
 
 // Páginas de calculadoras
 import IvaPage from "@/pages/calculadoras/Iva";
@@ -14,7 +15,8 @@ import FinanciacionPage from "@/pages/calculadoras/Financiacion";
 function Router() {
   return (
     <Switch>
-      <Route path="/" component={IvaPage} />
+      <Route path="/" component={Home} />
+      <Route path="/iva" component={IvaPage} />
       <Route path="/ofertas" component={OfertasPage} />
       <Route path="/descuentos" component={DescuentosPage} />
       <Route path="/financiacion" component={FinanciacionPage} />

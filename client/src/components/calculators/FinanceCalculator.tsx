@@ -1,14 +1,29 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 
 export function FinanceCalculator() {
-  const [amount, setAmount] = useState<string>("");
-  const [months, setMonths] = useState<string>("");
-  const [hasInterest, setHasInterest] = useState(false);
-  const [interestRate, setInterestRate] = useState<string>("");
+  const [amount, setAmount] = useState<string>(() => {
+    return localStorage.getItem('finance-calculator-amount') || '';
+  });
+  const [months, setMonths] = useState<string>(() => {
+    return localStorage.getItem('finance-calculator-months') || '';
+  });
+  const [hasInterest, setHasInterest] = useState(() => {
+    return localStorage.getItem('finance-calculator-has-interest') === 'true';
+  });
+  const [interestRate, setInterestRate] = useState<string>(() => {
+    return localStorage.getItem('finance-calculator-interest-rate') || '';
+  });
+
+  useEffect(() => {
+    localStorage.setItem('finance-calculator-amount', amount);
+    localStorage.setItem('finance-calculator-months', months);
+    localStorage.setItem('finance-calculator-has-interest', hasInterest.toString());
+    localStorage.setItem('finance-calculator-interest-rate', interestRate);
+  }, [amount, months, hasInterest, interestRate]);
 
   const totalAmount = Number(amount) || 0;
   const totalMonths = Number(months) || 1;

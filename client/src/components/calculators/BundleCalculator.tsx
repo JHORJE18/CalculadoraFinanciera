@@ -1,12 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 export function BundleCalculator() {
-  const [price, setPrice] = useState<string>("");
-  const [quantity, setQuantity] = useState<string>("3");
-  const [payFor, setPayFor] = useState<string>("1");
+  const [price, setPrice] = useState<string>(() => {
+    return localStorage.getItem('bundle-calculator-price') || '';
+  });
+  const [quantity, setQuantity] = useState<string>(() => {
+    return localStorage.getItem('bundle-calculator-quantity') || '3';
+  });
+  const [payFor, setPayFor] = useState<string>(() => {
+    return localStorage.getItem('bundle-calculator-payfor') || '2';
+  });
+
+  useEffect(() => {
+    localStorage.setItem('bundle-calculator-price', price);
+    localStorage.setItem('bundle-calculator-quantity', quantity);
+    localStorage.setItem('bundle-calculator-payfor', payFor);
+  }, [price, quantity, payFor]);
 
   const originalPrice = Number(price) || 0;
   const totalItems = Number(quantity) || 0;

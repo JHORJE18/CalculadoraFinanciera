@@ -1,12 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 export function VatCalculator() {
-  const [amount, setAmount] = useState<string>("");
-  const [vatRate, setVatRate] = useState<string>("21");
+  const [amount, setAmount] = useState<string>(() => {
+    return localStorage.getItem('vat-calculator-amount') || '';
+  });
+  const [vatRate, setVatRate] = useState<string>(() => {
+    return localStorage.getItem('vat-calculator-rate') || '21';
+  });
+
+  useEffect(() => {
+    localStorage.setItem('vat-calculator-amount', amount);
+    localStorage.setItem('vat-calculator-rate', vatRate);
+  }, [amount, vatRate]);
 
   const baseAmount = Number(amount) || 0;
   const vat = (baseAmount * Number(vatRate)) / 100;
