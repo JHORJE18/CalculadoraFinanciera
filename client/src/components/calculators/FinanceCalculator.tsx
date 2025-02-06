@@ -132,7 +132,7 @@ export function FinanceCalculator() {
           {hasInterest && (
             <div className="flex justify-between">
               <span>Intereses Totales:</span>
-              <span>{totalInterest.toFixed(2)}€</span>
+              <span className="text-red-600 dark:text-red-400">{totalInterest.toFixed(2)}€</span>
             </div>
           )}
           <div className="flex justify-between font-bold">
