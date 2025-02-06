@@ -28,11 +28,11 @@ export function FinanceCalculator() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Finance Calculator</CardTitle>
+        <CardTitle>Calculadora de Financiación</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="space-y-2">
-          <Label htmlFor="amount">Total Amount</Label>
+          <Label htmlFor="amount">Importe Total</Label>
           <Input
             id="amount"
             type="number"
@@ -40,19 +40,19 @@ export function FinanceCalculator() {
             step="0.01"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
-            placeholder="Enter amount"
+            placeholder="Introduce el importe"
           />
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="months">Number of Months</Label>
+          <Label htmlFor="months">Número de Meses</Label>
           <Input
             id="months"
             type="number"
             min="1"
             value={months}
             onChange={(e) => setMonths(e.target.value)}
-            placeholder="Enter months"
+            placeholder="Introduce los meses"
           />
         </div>
 
@@ -62,12 +62,12 @@ export function FinanceCalculator() {
             checked={hasInterest}
             onCheckedChange={setHasInterest}
           />
-          <Label htmlFor="interest">Include Interest</Label>
+          <Label htmlFor="interest">Incluir Intereses</Label>
         </div>
 
         {hasInterest && (
           <div className="space-y-2">
-            <Label htmlFor="interest-rate">Annual Interest Rate (%)</Label>
+            <Label htmlFor="interest-rate">Tasa de Interés Anual (%)</Label>
             <Input
               id="interest-rate"
               type="number"
@@ -75,24 +75,24 @@ export function FinanceCalculator() {
               step="0.1"
               value={interestRate}
               onChange={(e) => setInterestRate(e.target.value)}
-              placeholder="Enter interest rate"
+              placeholder="Introduce la tasa de interés"
             />
           </div>
         )}
 
         <div className="pt-4 space-y-2">
           <div className="flex justify-between">
-            <span>Monthly Payment:</span>
+            <span>Cuota Mensual:</span>
             <span>{monthlyPayment.toFixed(2)}€</span>
           </div>
           {hasInterest && (
             <div className="flex justify-between">
-              <span>Total Interest:</span>
+              <span>Intereses Totales:</span>
               <span>{totalInterest.toFixed(2)}€</span>
             </div>
           )}
           <div className="flex justify-between font-bold">
-            <span>Total to Pay:</span>
+            <span>Total a Pagar:</span>
             <span>{(totalAmount + totalInterest).toFixed(2)}€</span>
           </div>
         </div>

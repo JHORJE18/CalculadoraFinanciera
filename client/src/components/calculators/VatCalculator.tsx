@@ -15,11 +15,11 @@ export function VatCalculator() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>VAT Calculator</CardTitle>
+        <CardTitle>Calculadora de IVA</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="space-y-2">
-          <Label htmlFor="amount">Amount (without VAT)</Label>
+          <Label htmlFor="amount">Importe (sin IVA)</Label>
           <Input
             id="amount"
             type="number"
@@ -27,15 +27,15 @@ export function VatCalculator() {
             step="0.01"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
-            placeholder="Enter amount"
+            placeholder="Introduce el importe"
           />
         </div>
 
         <div className="space-y-2">
-          <Label>VAT Rate</Label>
+          <Label>Tipo de IVA</Label>
           <Select value={vatRate} onValueChange={setVatRate}>
             <SelectTrigger>
-              <SelectValue placeholder="Select VAT rate" />
+              <SelectValue placeholder="Selecciona el tipo de IVA" />
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="21">21%</SelectItem>
@@ -47,11 +47,11 @@ export function VatCalculator() {
 
         <div className="pt-4 space-y-2">
           <div className="flex justify-between">
-            <span>Base Amount:</span>
+            <span>Base Imponible:</span>
             <span>{baseAmount.toFixed(2)}€</span>
           </div>
           <div className="flex justify-between">
-            <span>VAT ({vatRate}%):</span>
+            <span>IVA ({vatRate}%):</span>
             <span>{vat.toFixed(2)}€</span>
           </div>
           <div className="flex justify-between font-bold">

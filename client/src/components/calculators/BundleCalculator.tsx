@@ -16,11 +16,11 @@ export function BundleCalculator() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Bundle Price Calculator</CardTitle>
+        <CardTitle>Calculadora de Ofertas</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="space-y-2">
-          <Label htmlFor="price">Original Price</Label>
+          <Label htmlFor="price">Precio Original</Label>
           <Input
             id="price"
             type="number"
@@ -28,13 +28,13 @@ export function BundleCalculator() {
             step="0.01"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
-            placeholder="Enter price"
+            placeholder="Introduce el precio"
           />
         </div>
 
         <div className="grid grid-cols-2 gap-4">
           <div className="space-y-2">
-            <Label htmlFor="quantity">Get</Label>
+            <Label htmlFor="quantity">Llevas</Label>
             <Input
               id="quantity"
               type="number"
@@ -44,7 +44,7 @@ export function BundleCalculator() {
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="payFor">Pay for</Label>
+            <Label htmlFor="payFor">Pagas</Label>
             <Input
               id="payFor"
               type="number"
@@ -57,12 +57,12 @@ export function BundleCalculator() {
 
         <div className="pt-4 space-y-2">
           <div className="flex justify-between font-bold">
-            <span>Price per unit:</span>
+            <span>Precio por unidad:</span>
             <span>{pricePerUnit.toFixed(2)}€</span>
           </div>
           <div className="flex justify-between text-sm text-muted-foreground">
-            <span>Total saving:</span>
-            <span>{(originalPrice - pricePerUnit).toFixed(2)}€ per unit</span>
+            <span>Ahorro total:</span>
+            <span>{(originalPrice - pricePerUnit).toFixed(2)}€ por unidad</span>
           </div>
         </div>
       </CardContent>

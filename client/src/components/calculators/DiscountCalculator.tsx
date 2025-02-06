@@ -15,11 +15,11 @@ export function DiscountCalculator() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Discount Calculator</CardTitle>
+        <CardTitle>Calculadora de Descuentos</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="space-y-2">
-          <Label htmlFor="price">Original Price</Label>
+          <Label htmlFor="price">Precio Original</Label>
           <Input
             id="price"
             type="number"
@@ -27,12 +27,12 @@ export function DiscountCalculator() {
             step="0.01"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
-            placeholder="Enter price"
+            placeholder="Introduce el precio"
           />
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="discount">Discount Percentage</Label>
+          <Label htmlFor="discount">Porcentaje de Descuento</Label>
           <Input
             id="discount"
             type="number"
@@ -40,23 +40,23 @@ export function DiscountCalculator() {
             max="100"
             value={discount}
             onChange={(e) => setDiscount(e.target.value)}
-            placeholder="Enter discount %"
+            placeholder="Introduce el descuento %"
           />
         </div>
 
         <div className="pt-4 space-y-2">
           <div className="flex justify-between">
-            <span>Original Price:</span>
+            <span>Precio Original:</span>
             <span>{originalPrice.toFixed(2)}€</span>
           </div>
           <div className="flex justify-between">
-            <span>You Save:</span>
+            <span>Ahorras:</span>
             <span className="text-green-600 dark:text-green-400">
               {discountAmount.toFixed(2)}€
             </span>
           </div>
           <div className="flex justify-between font-bold">
-            <span>Final Price:</span>
+            <span>Precio Final:</span>
             <span>{finalPrice.toFixed(2)}€</span>
           </div>
         </div>
