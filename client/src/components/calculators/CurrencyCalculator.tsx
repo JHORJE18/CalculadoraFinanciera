@@ -51,7 +51,7 @@ export function CurrencyCalculator() {
 
   useEffect(() => {
     calculateResult();
-    
+
     // Track currency selection when both currencies are selected
     if (fromCurrency && toCurrency) {
       analytics.trackEvent('select_currency', {
@@ -89,6 +89,10 @@ export function CurrencyCalculator() {
           .catch(console.error);
       }
     }
+  };
+
+  const handleExternalLinkClick = (linkName: string, url: string) => {
+    analytics.trackExternalLinkClick(linkName, url);
   };
 
   const currencies = [
@@ -156,9 +160,9 @@ export function CurrencyCalculator() {
               <SelectContent>
                 {currencies.map((currency) => (
                   <SelectItem key={currency.code} value={currency.code}>
-                   {currency.code} {currency.flag}
-                </SelectItem>
-              ))}
+                    {currency.code} {currency.flag}
+                  </SelectItem>
+                ))}
               </SelectContent>
             </Select>
           </div>
@@ -180,6 +184,7 @@ export function CurrencyCalculator() {
           Datos proporcionados por{' '}
           <a
             href="https://www.exchangerate-api.com"
+            onClick={() => handleExternalLinkClick('exchange_rate_api', 'https://www.exchangerate-api.com')}
             target="_blank"
             rel="noopener noreferrer"
             className="text-primary hover:underline"

@@ -1,5 +1,6 @@
 /** Event types that can be tracked in the application */
-type EventNames = 'page_view' | 'button_click' | 'form_submit' | 'calculation' | 'select_currency' | 'share' | 'theme_change';
+type EventNames = 'page_view' | 'button_click' | 'form_submit' | 'calculation' |
+  'select_currency' | 'share' | 'theme_change' | 'external_link_click';
 
 /** Parameters that can be passed with any event */
 type EventParams = {
@@ -114,6 +115,19 @@ class AnalyticsService {
     this.trackEvent('theme_change', {
       new_theme: newTheme,
       previous_theme: previousTheme,
+      timestamp: new Date().toISOString()
+    });
+  }
+
+  /**
+ * Tracks when a user clicks on an external link
+ * @param {string} linkName - The name or identifier of the link (e.g., 'linkedin', 'github')
+ * @param {string} url - The URL of the external link
+ */
+  public trackExternalLinkClick(linkName: string, url: string): void {
+    this.trackEvent('external_link_click', {
+      link_name: linkName,
+      url: url,
       timestamp: new Date().toISOString()
     });
   }

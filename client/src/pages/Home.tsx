@@ -3,8 +3,14 @@ import { Calculator, Percent, Package2, Wallet, Divide } from "lucide-react";
 import { Link } from "wouter";
 import { ArrowDownUp } from "lucide-react";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { analytics } from "@/lib/analytics";
 
 export default function Home() {
+
+  const handleExternalLinkClick = (linkName: string, url: string) => {
+    analytics.trackExternalLinkClick(linkName, url);
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <header className="border-b">
@@ -131,6 +137,7 @@ export default function Home() {
               href="https://www.linkedin.com/in/jhorje18"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => handleExternalLinkClick('linkedin', 'https://www.linkedin.com/in/jhorje18')}
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
               <svg
@@ -153,6 +160,7 @@ export default function Home() {
               href="https://github.com/JHORJE18/CalculadoraFinanciera"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => handleExternalLinkClick('github', 'https://github.com/JHORJE18/CalculadoraFinanciera')}
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
               <svg
