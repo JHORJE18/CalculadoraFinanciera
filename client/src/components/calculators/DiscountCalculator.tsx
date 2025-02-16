@@ -5,6 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Share2 } from "lucide-react";
 import { useShare } from "@/hooks/useShare";
+import { analytics } from "@/lib/analytics";
 
 export function DiscountCalculator() {
   const { shareData } = useShare();
@@ -31,6 +32,14 @@ export function DiscountCalculator() {
     shareData({
       title: "Cálculo de Descuento",
       text: shareText
+    });
+
+    analytics.trackShare('share', 'discount_calculation');
+    analytics.trackCalculation('discount', {
+      original_price: originalPrice,
+      discount_percent: discountPercent,
+      discount_amount: discountAmount,
+      final_price: finalPrice
     });
   };
 

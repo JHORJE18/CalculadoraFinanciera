@@ -84,6 +84,12 @@ npm run dev
 npm run build
 ```
 
+### Analytics y Seguimiento
+- **Seguimiento de Eventos**: Tracking automático de interacciones del usuario
+- **Integración con Google Analytics**: Monitorización en tiempo real
+- **Eventos Personalizados**: Seguimiento de cálculos y comparticiones
+- **Métricas de Uso**: Análisis detallado de las calculadoras más utilizadas
+
 ## 🤝 Contribuciones
 
 Las contribuciones son bienvenidas. Por favor, abre un issue primero para discutir los cambios que te gustaría realizar.

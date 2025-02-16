@@ -7,6 +7,7 @@ import { Share2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import useCalculationHistory from '@/hooks/use-calculation-history';
 import { Toast } from '@radix-ui/react-toast';
+import { analytics } from "@/lib/analytics";
 
 type ExchangeRates = { [key: string]: number };
 
@@ -50,6 +51,15 @@ export function CurrencyCalculator() {
 
   useEffect(() => {
     calculateResult();
+    
+    // Track currency selection when both currencies are selected
+    if (fromCurrency && toCurrency) {
+      analytics.trackEvent('select_currency', {
+        from_currency: fromCurrency,
+        to_currency: toCurrency,
+        currency_pair: `${fromCurrency}_${toCurrency}`
+      });
+    }
   }, [amount, fromCurrency, toCurrency, exchangeRates]);
 
   const handleShare = () => {
@@ -58,6 +68,15 @@ export function CurrencyCalculator() {
       const convertedAmount = result;
 
       const shareText = `💰 Conversión de Divisas\n\n${parseFloat(amount).toLocaleString()} ${fromCurrency} = ${convertedAmount.toLocaleString()} ${toCurrency}\nTasa de cambio: 1 ${fromCurrency} = ${exchangeRate.toFixed(4)} ${toCurrency}\n\n📱 Calculado con Calculadora Financiera | ${window.location.href}`;
+
+      analytics.trackShare('share', 'currency_calculation');
+      analytics.trackCalculation('currency', {
+        amount: parseFloat(amount),
+        from_currency: fromCurrency,
+        to_currency: toCurrency,
+        exchange_rate: exchangeRate,
+        converted_amount: convertedAmount
+      });
 
       if (navigator.share) {
         navigator.share({

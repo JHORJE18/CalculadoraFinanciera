@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Share2 } from "lucide-react";
 import { useShare } from "@/hooks/useShare";
 import { Switch } from "../ui/switch";
+import { analytics } from "@/lib/analytics";
 
 export function BundleCalculator() {
   const { shareData } = useShare();
@@ -44,6 +45,15 @@ export function BundleCalculator() {
     shareData({
       title: "Cálculo de Oferta",
       text: shareText
+    });
+
+    analytics.trackShare('share', 'bundle_calculation');
+    analytics.trackCalculation('bundle', {
+      price: originalPrice,
+      total_items: totalItems,
+      paid_items: paidItems,
+      savings_per_unit: savings,
+      is_unit_price: isUnitPrice
     });
   };
 

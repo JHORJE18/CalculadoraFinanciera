@@ -7,6 +7,7 @@ import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
 import { Share2 } from "lucide-react";
 import { useShare } from "@/hooks/useShare";
+import { analytics } from "@/lib/analytics";
 
 export function VatCalculator() {
   const { shareData } = useShare();
@@ -47,6 +48,8 @@ export function VatCalculator() {
       title: "Cálculo de IVA",
       text: shareText
     });
+
+    analytics.trackShare('share', 'iva_calculation');
   };
 
   return (

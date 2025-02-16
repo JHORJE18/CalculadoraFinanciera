@@ -13,7 +13,18 @@ import DescuentosPage from "@/pages/calculadoras/Descuentos";
 import FinanciacionPage from "@/pages/calculadoras/Financiacion";
 import DivisasPage from "./pages/calculadoras/Divisas";
 
+import { analytics } from "./lib/analytics";
+import { useEffect } from "react";
+import { useLocation } from "wouter";
+
 function Router() {
+  const [location] = useLocation();
+
+  useEffect(() => {
+    const pageName = location === "/" ? "home" : location.slice(1);
+    analytics.pageView(pageName);
+  }, [location]);
+
   return (
     <Switch>
       <Route path="/" component={Home} />

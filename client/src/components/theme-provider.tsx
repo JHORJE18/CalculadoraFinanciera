@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import { createContext, useContext, useEffect, useState } from "react"
+import { analytics } from "@/lib/analytics";
 
 type Theme = "dark" | "light" | "system"
 
@@ -53,9 +54,16 @@ export function ThemeProvider({
 
   const value = {
     theme,
-    setTheme: (theme: Theme) => {
-      localStorage.setItem(storageKey, theme)
-      setTheme(theme)
+    setTheme: (newTheme: Theme) => {
+      // Obtener el tema anterior antes de cambiarlo
+      const previousTheme = theme;
+
+      // Guardar el nuevo tema
+      localStorage.setItem(storageKey, newTheme);
+      setTheme(newTheme);
+
+      // Trackear el cambio de tema
+      analytics.trackThemeChange(newTheme, previousTheme);
     },
   }
 
