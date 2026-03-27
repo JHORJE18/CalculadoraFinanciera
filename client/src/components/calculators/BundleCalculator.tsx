@@ -34,6 +34,7 @@ export function BundleCalculator() {
   const originalPrice = Number(price) || 0;
   const totalItems = Number(quantity) || 0;
   const paidItems = Number(payFor) || 1;
+  const isInvalidOffer = paidItems > totalItems;
   const pricePerUnit = isUnitPrice ? originalPrice : (totalItems > 0 ? originalPrice / totalItems : 0);
   const totalPrice = isUnitPrice ? (originalPrice * totalItems) : originalPrice;
   const finalPricePerUnit = totalItems > 0 ? (totalPrice * paidItems) / (totalItems * totalItems) : 0;
@@ -100,6 +101,11 @@ export function BundleCalculator() {
 
         </div>
 
+        {isInvalidOffer && (
+          <div className="text-sm text-red-600 dark:text-red-400 text-center py-2 border border-red-200 dark:border-red-800 rounded-md">
+            "Pagas" no puede ser mayor que "Llevas"
+          </div>
+        )}
         <div className="grid grid-cols-2 gap-4">
           <div className="space-y-2">
             <Label htmlFor="quantity">Llevas</Label>
@@ -131,6 +137,10 @@ export function BundleCalculator() {
           <div className="flex justify-between">
             <span className={isUnitPrice ? "font-bold" : ""}>Precio por unidad:</span>
             <span className={isUnitPrice ? "font-bold" : ""}>{pricePerUnit.toFixed(2)}€</span>
+          </div>
+          <div className="flex justify-between font-bold">
+            <span>Precio con oferta:</span>
+            <span>{finalPricePerUnit.toFixed(2)}€/ud</span>
           </div>
           <div className="flex justify-between text-sm text-muted-foreground">
             <span>Ahorro por unidad:</span>

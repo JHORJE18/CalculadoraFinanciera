@@ -50,6 +50,14 @@ export function VatCalculator() {
     });
 
     analytics.trackShare('share', 'iva_calculation');
+    analytics.trackCalculation('iva', {
+      input_amount: inputAmount,
+      vat_rate: vatRateNumber,
+      base_amount: baseAmount,
+      vat_amount: vat,
+      total_amount: total,
+      add_vat: addVat
+    });
   };
 
   return (
