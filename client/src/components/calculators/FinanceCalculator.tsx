@@ -6,10 +6,12 @@ import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
 import { Share2 } from "lucide-react";
 import { useShare } from "@/hooks/useShare";
+import useCalculationHistory from "@/hooks/use-calculation-history";
 import { analytics } from "@/lib/analytics";
 
 export function FinanceCalculator() {
   const { shareData } = useShare();
+  const { addCalculation } = useCalculationHistory();
   const [amount, setAmount] = useState<string>(() => {
     return localStorage.getItem('finance-calculator-amount') || '';
   });
@@ -53,6 +55,7 @@ export function FinanceCalculator() {
       text: shareText
     });
 
+    addCalculation('financing', { amount, months, hasInterest, interestRate }, { monthlyPayment, totalInterest });
     analytics.trackShare('share', 'finance_calculation');
     analytics.trackCalculation('finance', {
       total_amount: totalAmount,
