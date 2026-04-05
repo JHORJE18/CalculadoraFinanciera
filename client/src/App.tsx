@@ -50,7 +50,15 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider defaultTheme="system" storageKey="calculator-theme">
-        <Router />
+        {/* Animated orb background */}
+        <div className="orb-layer" aria-hidden="true">
+          <div className="orb orb-1" />
+          <div className="orb orb-2" />
+          <div className="orb orb-3" />
+        </div>
+        <div className="relative z-10">
+          <Router />
+        </div>
         <Toaster />
       </ThemeProvider>
     </QueryClientProvider>

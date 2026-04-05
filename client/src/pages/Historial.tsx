@@ -51,11 +51,11 @@ export default function HistorialPage() {
   });
 
   return (
-    <div className="min-h-screen bg-background pb-16">
-      <header className="border-b">
+    <div className="min-h-screen pb-16">
+      <header className="sticky top-0 z-20 glass-surface border-b">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center gap-2">
-            <History className="h-6 w-6" />
+            <History className="h-6 w-6 text-primary" />
             <h1 className="text-xl font-bold">Historial</h1>
           </div>
           <ThemeToggle />
