@@ -12,6 +12,10 @@ import OfertasPage from "@/pages/calculadoras/Ofertas";
 import DescuentosPage from "@/pages/calculadoras/Descuentos";
 import FinanciacionPage from "@/pages/calculadoras/Financiacion";
 import DivisasPage from "./pages/calculadoras/Divisas";
+import HistorialPage from "@/pages/Historial";
+import HipotecaPage from "@/pages/calculadoras/Hipoteca";
+import MargenPage from "@/pages/calculadoras/Margen";
+import NominaPage from "@/pages/calculadoras/Nomina";
 
 import { analytics } from "./lib/analytics";
 import { useEffect } from "react";
@@ -33,6 +37,10 @@ function Router() {
       <Route path="/descuentos" component={DescuentosPage} />
       <Route path="/financiacion" component={FinanciacionPage} />
       <Route path="/divisas" component={DivisasPage} />
+      <Route path="/historial" component={HistorialPage} />
+      <Route path="/hipoteca" component={HipotecaPage} />
+      <Route path="/margen" component={MargenPage} />
+      <Route path="/nomina" component={NominaPage} />
       <Route component={NotFound} />
     </Switch>
   );

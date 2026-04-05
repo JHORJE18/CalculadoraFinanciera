@@ -1,6 +1,6 @@
 import useLocalStorage from './use-local-storage';
 
-export type CalculationType = 'vat' | 'discount' | 'offer' | 'financing' | 'currency';
+export type CalculationType = 'vat' | 'discount' | 'offer' | 'financing' | 'currency' | 'mortgage' | 'margin' | 'salary';
 
 export interface CalculationRecord {
   id: string;

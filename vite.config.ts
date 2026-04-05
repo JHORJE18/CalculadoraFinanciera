@@ -17,15 +17,15 @@ export default defineConfig({
     createHtmlPlugin({
       inject: {
         data: {
-          gtag: process.env.NODE_ENV === 'production' ? `
+          gtag: process.env.NODE_ENV === 'production' && process.env.VITE_GA_ID ? `
             <!-- Google tag (gtag.js) -->
-            <script async src="https://www.googletagmanager.com/gtag/js?id=G-P7KEB0EKGP"></script>
+            <script async src="https://www.googletagmanager.com/gtag/js?id=${process.env.VITE_GA_ID}"></script>
             <script>
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
 
-              gtag('config', 'G-P7KEB0EKGP');
+              gtag('config', '${process.env.VITE_GA_ID}');
             </script>
           ` : ''
         }

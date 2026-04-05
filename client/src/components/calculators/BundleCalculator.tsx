@@ -6,10 +6,12 @@ import { Button } from "@/components/ui/button";
 import { Share2 } from "lucide-react";
 import { useShare } from "@/hooks/useShare";
 import { Switch } from "../ui/switch";
+import useCalculationHistory from "@/hooks/use-calculation-history";
 import { analytics } from "@/lib/analytics";
 
 export function BundleCalculator() {
   const { shareData } = useShare();
+  const { addCalculation } = useCalculationHistory();
   const [price, setPrice] = useState<string>(() => {
     return localStorage.getItem('bundle-calculator-price') || '';
   });
@@ -48,6 +50,7 @@ export function BundleCalculator() {
       text: shareText
     });
 
+    addCalculation('offer', { price, quantity, payFor, isUnitPrice }, { finalPricePerUnit, savings });
     analytics.trackShare('share', 'bundle_calculation');
     analytics.trackCalculation('bundle', {
       price: originalPrice,

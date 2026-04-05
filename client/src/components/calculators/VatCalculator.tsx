@@ -7,10 +7,12 @@ import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
 import { Share2 } from "lucide-react";
 import { useShare } from "@/hooks/useShare";
+import useCalculationHistory from "@/hooks/use-calculation-history";
 import { analytics } from "@/lib/analytics";
 
 export function VatCalculator() {
   const { shareData } = useShare();
+  const { addCalculation } = useCalculationHistory();
   const [amount, setAmount] = useState<string>(() => {
     return localStorage.getItem('vat-calculator-amount') || '';
   });
@@ -49,6 +51,7 @@ export function VatCalculator() {
       text: shareText
     });
 
+    addCalculation('vat', { amount, vatRate, addVat }, { baseAmount, vat, total });
     analytics.trackShare('share', 'iva_calculation');
     analytics.trackCalculation('iva', {
       input_amount: inputAmount,

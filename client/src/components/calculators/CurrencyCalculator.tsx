@@ -23,15 +23,24 @@ export function CurrencyCalculator() {
 
   useEffect(() => {
     const fetchExchangeRates = async () => {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 8000);
       try {
-        const response = await fetch('https://api.exchangerate-api.com/v4/latest/EUR');
+        const response = await fetch('https://api.exchangerate-api.com/v4/latest/EUR', {
+          signal: controller.signal,
+        });
         const data = await response.json();
+        if (typeof data.rates !== 'object' || data.rates === null) {
+          throw new Error('Respuesta de API no válida');
+        }
         setExchangeRates(data.rates);
         setIsLoading(false);
       } catch (error) {
         console.error('Error al obtener los tipos de cambio:', error);
         setApiError(true);
         setIsLoading(false);
+      } finally {
+        clearTimeout(timeoutId);
       }
     };
 

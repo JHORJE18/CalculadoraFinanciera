@@ -5,10 +5,12 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Share2 } from "lucide-react";
 import { useShare } from "@/hooks/useShare";
+import useCalculationHistory from "@/hooks/use-calculation-history";
 import { analytics } from "@/lib/analytics";
 
 export function DiscountCalculator() {
   const { shareData } = useShare();
+  const { addCalculation } = useCalculationHistory();
   const [price, setPrice] = useState<string>(() => {
     return localStorage.getItem('discount-calculator-price') || '';
   });
@@ -34,6 +36,7 @@ export function DiscountCalculator() {
       text: shareText
     });
 
+    addCalculation('discount', { price, discount }, { discountAmount, finalPrice });
     analytics.trackShare('share', 'discount_calculation');
     analytics.trackCalculation('discount', {
       original_price: originalPrice,
