@@ -64,25 +64,39 @@ export default {
       },
       keyframes: {
         "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+        "orb-float-1": {
+          "0%, 100%": { transform: "translate(0%, 0%) scale(1)" },
+          "33%": { transform: "translate(8%, -12%) scale(1.08)" },
+          "66%": { transform: "translate(-6%, 8%) scale(0.95)" },
+        },
+        "orb-float-2": {
+          "0%, 100%": { transform: "translate(0%, 0%) scale(1)" },
+          "33%": { transform: "translate(-10%, 6%) scale(0.92)" },
+          "66%": { transform: "translate(7%, -10%) scale(1.06)" },
+        },
+        "orb-float-3": {
+          "0%, 100%": { transform: "translate(0%, 0%) scale(1)" },
+          "50%": { transform: "translate(5%, 8%) scale(1.1)" },
+        },
+        "glass-shimmer": {
+          "0%": { backgroundPosition: "200% center" },
+          "100%": { backgroundPosition: "-200% center" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "orb-float-1": "orb-float-1 18s ease-in-out infinite",
+        "orb-float-2": "orb-float-2 22s ease-in-out infinite",
+        "orb-float-3": "orb-float-3 26s ease-in-out infinite",
+        "glass-shimmer": "glass-shimmer 4s linear infinite",
       },
     },
   },

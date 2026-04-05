@@ -11,11 +11,11 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      <header className="border-b">
+    <div className="min-h-screen">
+      <header className="sticky top-0 z-20 glass-surface border-b">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center gap-2">
-            <Calculator className="h-6 w-6" />
+            <Calculator className="h-6 w-6 text-primary" />
             <h1 className="text-xl font-bold">Calculadora Financiera</h1>
           </div>
           <ThemeToggle />
@@ -32,11 +32,11 @@ export default function Home() {
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-2">
           <Link href="/iva">
-            <a className="block">
-              <Card className="transition-colors hover:bg-muted/50">
+            <a className="block group">
+              <Card className="hover:scale-[1.02] hover:shadow-xl hover:shadow-black/10 dark:hover:shadow-black/30 cursor-pointer">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
-                    <Calculator className="h-5 w-5" />
+                    <Calculator className="h-5 w-5 text-primary group-hover:scale-110 transition-transform" />
                     Calculadora de IVA
                   </CardTitle>
                 </CardHeader>
@@ -50,11 +50,11 @@ export default function Home() {
           </Link>
 
           <Link href="/ofertas">
-            <a className="block">
-              <Card className="transition-colors hover:bg-muted/50">
+            <a className="block group">
+              <Card className="hover:scale-[1.02] hover:shadow-xl hover:shadow-black/10 dark:hover:shadow-black/30 cursor-pointer">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
-                    <Package2 className="h-5 w-5" />
+                    <Package2 className="h-5 w-5 text-primary group-hover:scale-110 transition-transform" />
                     Calculadora de Ofertas
                   </CardTitle>
                 </CardHeader>
@@ -68,11 +68,11 @@ export default function Home() {
           </Link>
 
           <Link href="/descuentos">
-            <a className="block">
-              <Card className="transition-colors hover:bg-muted/50">
+            <a className="block group">
+              <Card className="hover:scale-[1.02] hover:shadow-xl hover:shadow-black/10 dark:hover:shadow-black/30 cursor-pointer">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
-                    <Percent className="h-5 w-5" />
+                    <Percent className="h-5 w-5 text-primary group-hover:scale-110 transition-transform" />
                     Calculadora de Descuentos
                   </CardTitle>
                 </CardHeader>
@@ -86,11 +86,11 @@ export default function Home() {
           </Link>
 
           <Link href="/financiacion">
-            <a className="block">
-              <Card className="transition-colors hover:bg-muted/50">
+            <a className="block group">
+              <Card className="hover:scale-[1.02] hover:shadow-xl hover:shadow-black/10 dark:hover:shadow-black/30 cursor-pointer">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
-                    <Wallet className="h-5 w-5" />
+                    <Wallet className="h-5 w-5 text-primary group-hover:scale-110 transition-transform" />
                     Calculadora de Financiación
                   </CardTitle>
                 </CardHeader>
@@ -104,11 +104,11 @@ export default function Home() {
           </Link>
 
           <Link href="/divisas">
-            <a className="block">
-              <Card className="transition-colors hover:bg-muted/50">
+            <a className="block group">
+              <Card className="hover:scale-[1.02] hover:shadow-xl hover:shadow-black/10 dark:hover:shadow-black/30 cursor-pointer">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
-                    <ArrowDownUp className="h-5 w-5" />
+                    <ArrowDownUp className="h-5 w-5 text-primary group-hover:scale-110 transition-transform" />
                     Conversor de Divisas
                   </CardTitle>
                 </CardHeader>
@@ -125,11 +125,11 @@ export default function Home() {
           </Link>
 
           <Link href="/hipoteca">
-            <a className="block">
-              <Card className="transition-colors hover:bg-muted/50">
+            <a className="block group">
+              <Card className="hover:scale-[1.02] hover:shadow-xl hover:shadow-black/10 dark:hover:shadow-black/30 cursor-pointer">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
-                    <Landmark className="h-5 w-5" />
+                    <Landmark className="h-5 w-5 text-primary group-hover:scale-110 transition-transform" />
                     Calculadora de Hipoteca
                   </CardTitle>
                 </CardHeader>
@@ -143,11 +143,11 @@ export default function Home() {
           </Link>
 
           <Link href="/margen">
-            <a className="block">
-              <Card className="transition-colors hover:bg-muted/50">
+            <a className="block group">
+              <Card className="hover:scale-[1.02] hover:shadow-xl hover:shadow-black/10 dark:hover:shadow-black/30 cursor-pointer">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
-                    <BadgePercent className="h-5 w-5" />
+                    <BadgePercent className="h-5 w-5 text-primary group-hover:scale-110 transition-transform" />
                     Calculadora de Margen
                   </CardTitle>
                 </CardHeader>
@@ -161,11 +161,11 @@ export default function Home() {
           </Link>
 
           <Link href="/nomina">
-            <a className="block">
-              <Card className="transition-colors hover:bg-muted/50">
+            <a className="block group">
+              <Card className="hover:scale-[1.02] hover:shadow-xl hover:shadow-black/10 dark:hover:shadow-black/30 cursor-pointer">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
-                    <TrendingUp className="h-5 w-5" />
+                    <TrendingUp className="h-5 w-5 text-primary group-hover:scale-110 transition-transform" />
                     Calculadora de Nómina
                   </CardTitle>
                 </CardHeader>
@@ -181,7 +181,7 @@ export default function Home() {
         </div>
       </main>
 
-      <footer className="border-t mt-8">
+      <footer className="glass-surface border-t mt-8">
         <div className="container mx-auto px-4 py-6 text-center text-sm text-muted-foreground flex flex-col gap-1">
           <div>Calculadora Financiera PWA - Todos los cálculos se realizan localmente en tu dispositivo</div>
           <div>Proyecto personal de Jorge López Gil @ 2025</div>

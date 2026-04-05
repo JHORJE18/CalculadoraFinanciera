@@ -3,11 +3,141 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --background: 220 30% 97%;
+    --foreground: 224 20% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 224 20% 12%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 20% 12%;
+    --primary: 142 70% 40%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 20% 92%;
+    --secondary-foreground: 224 20% 20%;
+    --muted: 220 20% 93%;
+    --muted-foreground: 220 10% 46%;
+    --accent: 220 20% 90%;
+    --accent-foreground: 224 20% 12%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 20% 85%;
+    --input: 220 20% 85%;
+    --ring: 142 70% 40%;
+    --radius: 1rem;
+
+    /* Glass tokens */
+    --glass-bg: rgba(255, 255, 255, 0.55);
+    --glass-border: rgba(255, 255, 255, 0.7);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), 0 1px 0 rgba(255,255,255,0.9) inset;
+    --glass-blur: blur(20px);
+
+    /* Orb colors light */
+    --orb-1: radial-gradient(circle at 40% 40%, rgba(52,199,89,0.35) 0%, rgba(52,199,89,0) 70%);
+    --orb-2: radial-gradient(circle at 60% 60%, rgba(0,122,255,0.3) 0%, rgba(0,122,255,0) 70%);
+    --orb-3: radial-gradient(circle at 50% 50%, rgba(175,82,222,0.25) 0%, rgba(175,82,222,0) 70%);
+  }
+
+  .dark {
+    --background: 224 25% 8%;
+    --foreground: 220 20% 94%;
+    --card: 224 22% 12%;
+    --card-foreground: 220 20% 94%;
+    --popover: 224 22% 12%;
+    --popover-foreground: 220 20% 94%;
+    --primary: 142 70% 45%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 224 20% 16%;
+    --secondary-foreground: 220 20% 80%;
+    --muted: 224 20% 16%;
+    --muted-foreground: 220 10% 55%;
+    --accent: 224 20% 18%;
+    --accent-foreground: 220 20% 94%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 224 20% 20%;
+    --input: 224 20% 20%;
+    --ring: 142 70% 45%;
+
+    /* Glass tokens dark */
+    --glass-bg: rgba(255, 255, 255, 0.06);
+    --glass-border: rgba(255, 255, 255, 0.12);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 1px 0 rgba(255,255,255,0.07) inset;
+    --glass-blur: blur(20px);
+
+    /* Orb colors dark */
+    --orb-1: radial-gradient(circle at 40% 40%, rgba(52,199,89,0.22) 0%, rgba(52,199,89,0) 70%);
+    --orb-2: radial-gradient(circle at 60% 60%, rgba(0,122,255,0.2) 0%, rgba(0,122,255,0) 70%);
+    --orb-3: radial-gradient(circle at 50% 50%, rgba(175,82,222,0.18) 0%, rgba(175,82,222,0) 70%);
+  }
+
   * {
     @apply border-border;
   }
 
   body {
     @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+@layer components {
+  /* Liquid glass card */
+  .glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    border-radius: var(--radius);
+  }
+
+  /* Glass surface (header / nav) */
+  .glass-surface {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border-color: var(--glass-border);
+  }
+
+  /* Orb layer */
+  .orb-layer {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+  }
+
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.85;
+  }
+
+  .orb-1 {
+    width: 55vw;
+    height: 55vw;
+    top: -15%;
+    left: -10%;
+    background: var(--orb-1);
+    animation: orb-float-1 18s ease-in-out infinite;
+  }
+
+  .orb-2 {
+    width: 50vw;
+    height: 50vw;
+    bottom: -10%;
+    right: -8%;
+    background: var(--orb-2);
+    animation: orb-float-2 22s ease-in-out infinite;
+  }
+
+  .orb-3 {
+    width: 40vw;
+    height: 40vw;
+    top: 40%;
+    left: 35%;
+    background: var(--orb-3);
+    animation: orb-float-3 26s ease-in-out infinite;
   }
 }
